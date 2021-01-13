@@ -32,7 +32,6 @@ export class PhotoService {
     });
 
   }
-
 }
 
 export interface Photo {
