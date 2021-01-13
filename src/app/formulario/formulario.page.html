@@ -20,7 +20,7 @@
       </ion-col>
 
       <ion-col>
-        <ion-img src="/assets/avatar.png"></ion-img>
+        <ion-img src={{perfil.imatge}}></ion-img>
         <ion-buttons>
           <ion-button (click)="addProfile()">ADD PHOTO</ion-button>
         </ion-buttons>
@@ -31,6 +31,22 @@
       </ion-col>
 
     </ion-row>
+
+
+    <!--  -->
+
+
+     <ion-content>
+      <ion-grid>
+        <ion-row>
+        <ion-col size="6" 
+          *ngFor="let photo of photoService.photos; index as position">
+            <ion-img [src]="photo.webviewPath"></ion-img>
+        </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-content>
+
 
     <!--  -->
     <ion-col>

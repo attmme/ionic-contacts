@@ -9,7 +9,9 @@ import { PhotoService } from '../services/photo.service';
 })
 export class FormularioPage implements OnInit {
 
-  constructor(private ruta: Router, public photoService: PhotoService) { }
+  constructor(
+    private ruta: Router, 
+    public photoService: PhotoService,) { }
 
   perfil = {
     nom: "",
@@ -24,7 +26,10 @@ export class FormularioPage implements OnInit {
 
   cancelar() {
     let t = this.perfil;
-    t.cognom = t.nom = t.email = t.telefon = t.imatge = ""; // Reset
+    
+    // Reset
+    t.cognom = t.nom = t.email = t.telefon = ""; 
+    t.imatge = "/assets/avatar.png";
     this.ruta.navigate(['/lista']);
   }
 
@@ -35,7 +40,9 @@ export class FormularioPage implements OnInit {
 
   // Afegir foto perfil
   addProfile() {
-    this.photoService.addNewToGallery();
+    this.photoService.addNewToGallery().then(() => {
+      this.perfil.imatge =this.photoService.photos[0].webviewPath;
+    });
   }
 
 }

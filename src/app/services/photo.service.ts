@@ -19,17 +19,22 @@ export class PhotoService {
   public photos: Photo[] = [];
 
   public async addNewToGallery() {
+
     // Take a photo
     const capturedPhoto = await Camera.getPhoto({
-      resultType: CameraResultType.Uri, 
-      source: CameraSource.Camera, 
-      quality: 100 
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Camera,
+      quality: 100
     });
+    
+    this.photos.unshift({
+      webviewPath: capturedPhoto.webPath
+    });
+
   }
-  
+
 }
 
 export interface Photo {
-  filepath: string;
   webviewPath: string;
 }
