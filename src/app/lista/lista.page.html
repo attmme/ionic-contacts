@@ -1,17 +1,21 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Lista
-    </ion-title>
+    <ion-title> Contacts </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="formulario()">+</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Lista</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Lista pagina"></app-explore-container>
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+      <ion-thumbnail slot="start">
+        <ion-img src={{item.image}}></ion-img>
+      </ion-thumbnail>
+      <ion-label>{{item.firstName}} {{item.lastName}}</ion-label>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
