@@ -1,21 +1,64 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-
     <ion-buttons slot="start">
       <ion-button (click)="cancelar()">CANCEL</ion-button>
     </ion-buttons>
 
-    <ion-title > New contact </ion-title>
-    
+    <ion-title> New contact </ion-title>
+
     <ion-buttons slot="end">
       <ion-button (click)="done()">DONE</ion-button>
     </ion-buttons>
-
-
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+      </ion-col>
+
+      <ion-col>
+        <ion-img src="/assets/avatar.png"></ion-img>
+        <ion-buttons>
+          <ion-button (click)="addProfile()">ADD PHOTO</ion-button>
+        </ion-buttons>
+    
+      </ion-col>
+
+      <ion-col>
+      </ion-col>
+
+    </ion-row>
+
+    <!--  -->
+    <ion-col>
+      <ion-row>
+        <ion-item>
+          <ion-input placeholder="First name" [(ngModel)]="perfil.nom"></ion-input>
+        </ion-item>
+      </ion-row>
+
+      <ion-row>
+        <ion-item>
+          <ion-input placeholder="Last name" [(ngModel)]="perfil.cognom"></ion-input>
+        </ion-item>
+      </ion-row>
+
+      <ion-row>
+        <ion-item>
+          <ion-input placeholder="Email" [(ngModel)]="perfil.email"></ion-input>
+        </ion-item>
+      </ion-row>
+
+      <ion-row>
+        <ion-item>
+          <ion-input placeholder="Phone" [(ngModel)]="perfil.telefon"></ion-input>
+        </ion-item>
+      </ion-row>
+    </ion-col>
+
+  </ion-grid>
 
 </ion-content>
