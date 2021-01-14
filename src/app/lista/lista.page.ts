@@ -9,13 +9,16 @@ import { Component, OnInit } from '@angular/core';
 
 export class ListaPage implements OnInit {
   items = require("../contacts.json");
+  primerCop = true;
 
   constructor(private ruta: Router, route: ActivatedRoute) {
-    localStorage.clear();
+    //localStorage.clear();
     route.params.forEach(params => this.actualitzar());
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+
+  }
 
   formulario() {
     this.ruta.navigate(['/formulario']);
@@ -23,16 +26,34 @@ export class ListaPage implements OnInit {
 
   actualitzar() {
     let perfils = JSON.parse(localStorage.getItem("perfils"));
+    let estat = JSON.parse(localStorage.getItem("actualitzar"));
 
-    if (perfils) {
-      let t = perfils[perfils.length-1];
+    if (perfils && (estat || this.primerCop)) {
 
-      console.log("Actualitzat: ", t)
-      this.items.push({
-        firstName: t.nom,
-        lastName: t.cognom,
-        image: t.imatge
-      });
+      if (this.primerCop) {
+        this.primerCop = false; // S'apaga
+
+        for (let i = 0; i < perfils.length; i++) {
+          let t = perfils[i];
+
+          this.items.push({
+            firstName: t.nom,
+            lastName: t.cognom,
+            image: t.imatge
+          });
+        }
+      } else {
+        let t = perfils[perfils.length - 1];
+
+        this.items.push({
+          firstName: t.nom,
+          lastName: t.cognom,
+          image: t.imatge
+        });
+
+      }
+
+
     }
   }
 

@@ -13,6 +13,8 @@ export class FormularioPage implements OnInit {
     private ruta: Router,
     public photoService: PhotoService) { }
 
+  primerCop = true;
+
   perfils = [];
 
   perfil = {
@@ -27,17 +29,32 @@ export class FormularioPage implements OnInit {
   }
 
   cancelar() {
-    let t = this.perfil;
+    //let t = this.perfil;
     /*     t.cognom = t.nom = t.email = t.telefon = "";
         t.imatge = "/assets/avatar.png"; */
+    localStorage.setItem("actualitzar", JSON.stringify(false));
     this.ruta.navigate(['/lista']);
   }
 
   // Afegir contacte
   done() {
+    // El primer cop recollim el que hi ha guardat
+    if (this.primerCop){
+      this.primerCop = false;
+      let perfilsAnteriors = JSON.parse(localStorage.getItem("perfils"));
+
+      if (perfilsAnteriors){
+        perfilsAnteriors.map(el => {
+          console.log("Anteriors: ", el)
+          this.perfils.push( el );
+        })
+      }
+    }
+
     this.perfils.push({ ...this.perfil });
     localStorage.setItem("perfils", JSON.stringify(this.perfils));
-    this.cancelar();
+    localStorage.setItem("actualitzar", JSON.stringify(true));
+    this.ruta.navigate(['/lista']);
   }
 
   // Afegir foto perfil
